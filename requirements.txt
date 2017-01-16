@@ -1,2 +1,3 @@
 mamba==0.8.6
 expects==0.8.0
+prospector==0.12.4

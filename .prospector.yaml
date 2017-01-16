@@ -1,0 +1,6 @@
+inherits:
+    - strictness_medium
+
+pyflakes:
+  disable:
+    - F999
