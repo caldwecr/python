@@ -5,7 +5,9 @@ def has_cycle(head):
         return is_cyclical(head, head.next.next)
 
 def is_terminated_soon(head):
-    if head.next is None:
+    if head is None:
+        return True
+    elif head.next is None:
         return True
     elif head.next.next is None:
         return True

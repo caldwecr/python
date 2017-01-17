@@ -21,3 +21,14 @@ with description('has_cycle'):
     with context('when the list is not cyclical'):
         with it('is False'):
             expect(cyclical_linked_list.has_cycle(self.node0)).to(be_false)
+    with context('when the list contains one node'):
+        with context('when the node is the end of the list'):
+            with it('is False'):
+                expect(cyclical_linked_list.has_cycle(self.node3)).to(be_false)
+        with context('when the node is linked to itself'):
+            with it('is True'):
+                self.node3.next = self.node3
+                expect(cyclical_linked_list.has_cycle(self.node3)).to(be_true)
+    with context('when the list is empty'):
+        with it('is False'):
+            expect(cyclical_linked_list.has_cycle(None)).to(be_false)
