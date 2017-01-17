@@ -1,8 +1,5 @@
 def has_cycle(head):
-    if is_terminated_soon(head):
-        return False
-    else:
-        return is_cyclical(head, head.next.next)
+    return is_cyclical(head)
 
 def is_terminated_soon(head):
     if head is None:
@@ -14,10 +11,16 @@ def is_terminated_soon(head):
     else:
         return False
 
-def is_cyclical(hop, hophop):
-    if hop == hophop:
-        return True
-    elif is_terminated_soon(hophop):
+def is_cyclical(hop, hophop=False):
+    if hophop is False:
+        if is_terminated_soon(hop):
+            return False
+        else:
+            hophop = hop.next.next
+
+    if is_terminated_soon(hophop):
         return False
+    elif hop == hophop:
+        return True
     else:
         return is_cyclical(hop.next, hophop.next.next)
