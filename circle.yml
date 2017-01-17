@@ -4,3 +4,4 @@ machine:
 test:
   override:
     - mamba
+    - prospector

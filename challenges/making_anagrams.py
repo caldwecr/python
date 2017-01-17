@@ -1,5 +1,3 @@
-from functools import reduce
-
 def number_needed(a, b):
     """ Returns the number of characters you must delete to make the two strings anagrams of each other """
     letters = {}
@@ -9,4 +7,4 @@ def number_needed(a, b):
     for l in b:
         letters[l] = letters[l] - 1 if l in letters and letters[l] else -1
 
-    return reduce(lambda x, y: abs(x) + abs(y), letters.values(), 0)
+    return sum([abs(x) for x in letters.values()])
