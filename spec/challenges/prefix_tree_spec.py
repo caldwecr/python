@@ -40,3 +40,22 @@ with description('PrefixTreeNode'):
                 self.node.set_child(child)
                 expect(self.node.find_or_create_child('d')).to(be(child))
 
+    with description('#set_child'):
+        with context('when a child with the value is already in children'):
+            with it('raises a ValueError'):
+                def callback():
+                    child2 = prefix_tree.PrefixTreeNode('d')
+                    self.node.set_child(child2)
+
+                child = prefix_tree.PrefixTreeNode('d')
+                self.node.set_child(child)
+                expect(callback).to(raise_error(ValueError))
+        with context('when a child with the value is not in children'):
+            with it('adds the child to children'):
+                expect(self.node.find_child('d')).to(be_none)
+
+                child = prefix_tree.PrefixTreeNode('d')
+                self.node.set_child(child)
+
+                expect(self.node.find_child('d')).to(be(child))
+

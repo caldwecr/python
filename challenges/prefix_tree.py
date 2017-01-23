@@ -19,7 +19,10 @@ class PrefixTreeNode:
             return found_child
 
     def set_child(self, child):
-        self.children[child.value] = child
+        if child.value in self.children.keys():
+            raise ValueError('Cannot overwrite existing child')
+        else:
+            self.children[child.value] = child
 
     def total_children(self):
         sum([child.total_children() for child in self.children.values()])
