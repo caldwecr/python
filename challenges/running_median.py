@@ -22,7 +22,6 @@ class RunningMedianList:
         self.balance()
 
     def balance(self):
-        # print('balancing start: med, diff, left, right', self.med, self.diff, self.left, self.right)
         if self.diff > 1:
             # We are right heavy
             heapq.heappush(self.left, -self.med)
@@ -45,12 +44,11 @@ class RunningMedianList:
             return 1 + len(self.left) + len(self.right)
 
     def median(self):
-        # print('median: med, diff, left, right', self.med, self.diff, self.left, self.right)
         i = self.count_of_items()
         if i == 0:
             raise ValueError('Empty heap')
         elif i % 2 == 1:
-            return self.med
+            return self.med / 1
         elif i % 2 == 0:
             # When i is 2 one side has one node, the other side is empty
             if self.diff == 1:
