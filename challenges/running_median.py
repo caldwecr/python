@@ -1,16 +1,19 @@
+import heapq
 class RunningMedianList:
-    def __init__(self, existing_list = []):
-        self.list = sorted(existing_list)
+    def __init__(self):
+        self.list = []
 
     def append(self, item):
-        self.list.append(item)
-        self.list.sort()
+        heapq.heappush(self.list, item)
+
 
     def median(self):
+        n = len(self.list)//2 + 1
+        nl = heapq.nlargest(n, self.list)
+
         if len(self.list) % 2 == 1:
-            return self.list[len(self.list)//2]/1
+            return nl[-1] / 1
         else:
-            m = len(self.list)//2
-            return (self.list[m] + self.list[m-1])/2
+            return (nl[-1] + nl[-2])/2
 
 
