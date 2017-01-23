@@ -59,3 +59,27 @@ with description('PrefixTreeNode'):
 
                 expect(self.node.find_child('d')).to(be(child))
 
+    with description('#total_children'):
+        with context('when the children are all leaf nodes'):
+            with it('is the count of children'):
+                child0 = prefix_tree.PrefixTreeNode('d')
+                child1 = prefix_tree.PrefixTreeNode('f')
+                child2 = prefix_tree.PrefixTreeNode('g')
+                self.node.set_child(child0)
+                self.node.set_child(child1)
+                self.node.set_child(child2)
+
+                expect(self.node.total_children()).to(be(3))
+        with context('when there are leaf nodes in children and in children of children'):
+            with it('is the count of all children'):
+                child0 = prefix_tree.PrefixTreeNode('d')
+                child1 = prefix_tree.PrefixTreeNode('f')
+                child2 = prefix_tree.PrefixTreeNode('g')
+                self.node.set_child(child0)
+                child1.set_child(child2)
+                self.node.set_child(child1)
+
+                expect(self.node.total_children()).to(be(3))
+
+
+

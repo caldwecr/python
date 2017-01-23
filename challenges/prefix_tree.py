@@ -25,7 +25,7 @@ class PrefixTreeNode:
             self.children[child.value] = child
 
     def total_children(self):
-        sum([child.total_children() for child in self.children.values()])
+        return sum([child.total_children() + 1 if child.total_children() else 1 for child in self.children.values()])
 
 class PrefixTree:
     """Expressly written with the given assumption that add operations do not insert duplicate values"""
